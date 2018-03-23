@@ -12,6 +12,7 @@
     <description>Parent project for a boot two demo</description>
 
     <modules>
+        <module>domain-lib</module>
         <module>domain-picker</module>
         <module>domain-service</module>
         <module>pricing-service</module>
