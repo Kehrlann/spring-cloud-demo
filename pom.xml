@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>wf.garnier</groupId>
+    <artifactId>boot-two-parent</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <name>boot-two-parent</name>
+    <description>Parent project for a boot two demo</description>
+
+    <modules>
+        <module>domain-picker</module>
+        <module>domain-service</module>
+        <module>pricing-service</module>
+        <module>whois-service</module>
+    </modules>
+</project>

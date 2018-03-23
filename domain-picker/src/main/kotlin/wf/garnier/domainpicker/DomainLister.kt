@@ -10,7 +10,7 @@ import reactor.core.publisher.Flux
 import java.net.URI
 
 @RestController
-class DomainLister(@Value("\${domains.base_url}") val baseUrl: String) {
+class DomainLister(@Value("\${domains.base_url:}") val baseUrl: String) {
 
     @GetMapping("/domains")
     fun getDomains(@RequestParam("search") searchTerm: String): Flux<String> {

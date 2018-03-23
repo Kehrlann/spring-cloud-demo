@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>wf.garnier</groupId>
-	<artifactId>domain-picker</artifactId>
+	<artifactId>domain-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>domain-picker</name>
+	<name>domain-service</name>
 	<description>Demo project for Spring Boot Two : choose your domain name !</description>
 
 	<parent>
