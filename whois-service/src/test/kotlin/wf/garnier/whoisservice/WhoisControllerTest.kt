@@ -16,7 +16,7 @@ class WhoisControllerTest {
         }
 
         assertThat(processingTime).isGreaterThan(1000)
-        assertThat(processingTime).isLessThan(2000 + 50)  // max delay time + a safe margin for processing time
+        assertThat(processingTime).isLessThan(2000 + 250)  // max delay time + a safe margin for processing time
     }
 
     @Test
