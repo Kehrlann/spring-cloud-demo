@@ -17,6 +17,7 @@ Something around domain names
 - search-service, around available domains
   - Lets you talk about spring boot and kotlin
   - Not very high value to integrate with, but good start
+  - Technology : rest template, kotlin, controller, spring boot
 
 - pricing-service, to get prices
   - Webclient and parallel stuff
