@@ -9,10 +9,6 @@ import wf.garnier.domain.Domain
 @RestController
 class DomainLister(val config: DomainServiceConfiguration) {
 
-    init {
-        println(config.extensions)
-    }
-
     // TODO : make some unavailable
     @GetMapping("/api/domains")
     fun getDomains(@RequestParam("search") searchTerm: String) = config.extensions.map { Domain(searchTerm, it, true) }
