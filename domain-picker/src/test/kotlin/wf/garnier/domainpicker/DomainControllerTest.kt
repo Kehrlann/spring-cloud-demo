@@ -1,34 +1,31 @@
 package wf.garnier.domainpicker
 
+import com.nhaarman.mockito_kotlin.*
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
-import org.mockito.Mockito
-import org.mockito.Mockito.*
 import wf.garnier.domain.Domain
+import wf.garnier.domain.DomainListResponse
 
 class DomainControllerTest {
+    private val expectedResponse = DomainListResponse(domains =  listOf(Domain("example", "com", true)))
+    private val client:DomainServiceClient = mock {
+        on { listDomains(any()) } doReturn expectedResponse
+    }
 
     @Test
     fun `it calls the domain service client`() {
-        val client = mock(DomainServiceClient::class.java)
         val controller = DomainController(client)
 
-        controller.getAll()
-        verify(client, times(1)).listDomains()
+        controller.getAll("example")
+        verify(client, times(1)).listDomains("example")
     }
 
     @Test
     fun `it returns relevant data`() {
-        val expectedDomains = listOf(AugmentedDomain("example", "com", true))
-
-        val client = mock(DomainServiceClient::class.java)
-        whenever(client.listDomains()).thenReturn(listOf(Domain("example", "com", true)))
         val controller = DomainController(client)
 
-        val domains = controller.getAll()
+        val domains = controller.getAll("example")
 
-        assertThat(domains).isEqualTo(expectedDomains)
+        assertThat(domains).isEqualTo(expectedResponse.domains.map { AugmentedDomain(it) })
     }
 }
-
-fun <T> whenever(call: T) = Mockito.`when`(call)!!

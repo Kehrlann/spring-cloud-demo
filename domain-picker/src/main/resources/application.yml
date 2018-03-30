@@ -1,1 +1,2 @@
+spring.application.name: app
 server.port: 8000
