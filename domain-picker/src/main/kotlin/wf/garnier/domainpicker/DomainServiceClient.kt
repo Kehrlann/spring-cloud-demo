@@ -7,7 +7,7 @@ import wf.garnier.domain.DomainListResponse
 @Component
 class DomainServiceClient(val httpClient: RestTemplate) {
 
-    val url = "http://localhost:8080"
+    val url = "http://domain-service"
 
     fun listDomains(searchTerm: String): DomainListResponse {
         return httpClient

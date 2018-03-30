@@ -16,7 +16,7 @@ class DomainServiceClientTest {
         serviceCLient.listDomains("anything")
 
         verify(httpClient, times(1)).getForObject(
-                        eq("http://localhost:8080/api/domains?search=anything"),
+                        eq("http://domain-service/api/domains?search=anything"),
                         eq(DomainListResponse::class.java)
                 )
     }
