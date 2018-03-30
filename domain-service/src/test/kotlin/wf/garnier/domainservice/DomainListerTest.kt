@@ -21,9 +21,9 @@ class DomainListerTest {
             Domain("test", "org", true),
             Domain("test", "io", true)
         )
-        val domains = domainLister.getDomains("test")
+        val domainListResponse = domainLister.getDomains("test")
 
-        assertThat(domains).isEqualTo(expectedDomains)
+        assertThat(domainListResponse.domains).isEqualTo(expectedDomains)
     }
 }
 
@@ -43,8 +43,8 @@ class DomainListerControllerTest {
     @Test
     fun `has correct domains`() {
         mvc.perform(get("/api/domains?search=test"))
-            .andExpect(jsonPath(".[*].name").value(expectedDomains.map { it.name }))
-            .andExpect(jsonPath(".[*].extension").value(expectedDomains.map { it.extension }))
-            .andExpect(jsonPath(".[*].available").value(expectedDomains.map { it.available }))
+            .andExpect(jsonPath(".domains.[*].name").value(expectedDomains.map { it.name }))
+            .andExpect(jsonPath(".domains.[*].extension").value(expectedDomains.map { it.extension }))
+            .andExpect(jsonPath(".domains.[*].available").value(expectedDomains.map { it.available }))
     }
 }
