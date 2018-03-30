@@ -2,8 +2,10 @@ package wf.garnier.whoisservice
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient
 
 @SpringBootApplication
+@EnableEurekaClient
 class WhoisServiceApplication
 
 fun main(args: Array<String>) {

@@ -1,1 +1,3 @@
+spring.application.name: whois-service
+
 server.port: 8082
