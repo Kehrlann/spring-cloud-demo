@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 class PricingController {
 
-    @GetMapping("/price")
+    @GetMapping("/api/price")
     fun getPrice(@RequestParam("domain") domain: String) = 5 + domain.length
 }
