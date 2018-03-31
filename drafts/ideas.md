@@ -40,4 +40,6 @@ What about config service ... ?
 - How does the SCS-Eureka-server fare in a multi-instance context ; what if one instance "dies" ?
 
 # What else could we do ?!
-- Should we TDD the shit out of this ?
+- Should we TDD it ?
+- Should I load real domain availability for a few well known domains ?
+- How does this work with PCF ?
