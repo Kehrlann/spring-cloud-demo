@@ -7,7 +7,7 @@ import wf.garnier.domain.Domain
 import wf.garnier.domain.DomainListResponse
 
 @RestController
-class DomainLister(val config: DomainServiceConfiguration) {
+class DomainController(val config: DomainServiceConfiguration) {
 
     // TODO : make some unavailable
     @GetMapping("/api/domains")

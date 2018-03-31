@@ -11,8 +11,8 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath
 import wf.garnier.domain.Domain
 
-class DomainListerTest {
-    val domainLister = DomainLister(DomainServiceConfiguration(mutableListOf("com", "org", "io")))
+class DomainControllerTest {
+    val domainLister = DomainController(DomainServiceConfiguration(mutableListOf("com", "org", "io")))
 
     @Test
     fun `it lists domains`() {
@@ -28,8 +28,8 @@ class DomainListerTest {
 }
 
 @RunWith(SpringRunner::class)
-@WebMvcTest(DomainServiceConfiguration::class, DomainLister::class)
-class DomainListerControllerTest {
+@WebMvcTest(DomainServiceConfiguration::class, DomainController::class)
+class DomainControllerControllerTest {
 
     private val expectedDomains = listOf(
         Domain("test", "com", true),
