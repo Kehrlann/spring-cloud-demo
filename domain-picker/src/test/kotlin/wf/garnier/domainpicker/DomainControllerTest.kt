@@ -5,6 +5,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
 import wf.garnier.domain.Domain
 import wf.garnier.domain.DomainListResponse
+import wf.garnier.domain.WhoIs
 
 class DomainControllerTest {
     private val expectedDomainResponse = DomainListResponse(
@@ -24,9 +25,13 @@ class DomainControllerTest {
         on { price(any()) } doReturn 42
     }
 
+    private val whoisMock: WhoisServiceClient = mock {
+        on { whois(any()) } doReturn WhoIs()
+    }
+
     @Test
     fun `it calls the domain service client`() {
-        val controller = DomainController(domainMock, mock())
+        val controller = DomainController(domainMock, mock(), mock())
 
         controller.getAll("example")
         verify(domainMock, times(1)).listDomains("example")
@@ -34,7 +39,7 @@ class DomainControllerTest {
 
     @Test
     fun `it calls the pricing service client for available domains`() {
-        val controller = DomainController(domainMock, pricingMock)
+        val controller = DomainController(domainMock, pricingMock, mock())
 
         controller.getAll("example")
         argumentCaptor<String>().apply {
@@ -44,8 +49,19 @@ class DomainControllerTest {
     }
 
     @Test
+    fun `it calls the whois service for unavailable domains`() {
+        val controller = DomainController(domainMock, pricingMock, whoisMock)
+
+        controller.getAll("example")
+        argumentCaptor<String>().apply {
+            verify(whoisMock, times(2)).whois(capture())
+            assertThat(allValues).containsExactlyInAnyOrder("example.io", "example.net")
+        }
+    }
+
+    @Test
     fun `it returns relevant data`() {
-        val controller = DomainController(domainMock, pricingMock)
+        val controller = DomainController(domainMock, pricingMock, mock())
 
         val domains = controller.getAll("example")
 
