@@ -12,9 +12,10 @@ class WhoisControllerTest {
         val controller = WhoisController()
 
         val processingTime = measureTimeMillis {
-            controller.whois("example.com").blockLast()
+            controller.whois("example.com").block()
         }
 
+        // TODO: use virtual time ?
         assertThat(processingTime).isGreaterThan(1000)
         assertThat(processingTime).isLessThan(2000 + 250)  // max delay time + a safe margin for processing time
     }
@@ -23,7 +24,7 @@ class WhoisControllerTest {
     fun `returns the admin for the domain, and an expiration date within 2 years`() {
         val controller = WhoisController()
 
-        val (company, contact, validUntil) = controller.whois("example.com").blockLast()!!
+        val (company, contact, validUntil) = controller.whois("example.com").block()!!
 
         assertThat(company).isEqualToIgnoringCase("example, corp.")
         assertThat(contact).isEqualTo("admin@example.com")
