@@ -9,7 +9,11 @@ data class Domain(
     val available: Boolean = false
 )
 
-data class WhoIs(val company: String, val contact: String, val validUntil: LocalDate)
+data class WhoIs(
+        val company: String = "",
+        val contact: String = "",
+        val validUntil: LocalDate? = null
+)
 
 data class DomainListResponse(
         val date: LocalDateTime = LocalDateTime.now(),
