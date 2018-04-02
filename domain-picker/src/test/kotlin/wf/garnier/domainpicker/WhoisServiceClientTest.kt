@@ -1,35 +1,30 @@
 package wf.garnier.domainpicker
 
-import com.nhaarman.mockito_kotlin.*
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
-import org.springframework.web.client.RestTemplate
+import org.springframework.web.reactive.function.client.WebClient
 import wf.garnier.domain.WhoIs
+import wf.garnier.domainpicker.mockserver.MockServer
 
 class WhoisServiceClientTest {
-    val expectedDomain = "example.com"
-    val expectedWhois = WhoIs(company = "test")
+    private val expectedDomain = "example.com"
+    private val mockServer = MockServer()
 
-    val httpClient: RestTemplate = mock {
-        on { getForObject(any<String>(), any<Class<*>>()) } doReturn expectedWhois
-    }
-
-    val client = WhoisServiceClient(httpClient)
+    private val underTest = WhoisServiceClient(WebClient.builder(), mockServer.url())
 
     @Test
     fun `it should call the whois service`() {
-        client.whois(expectedDomain)
+        mockServer.addJsonResponse("{}")
+        underTest.whois(expectedDomain).block()
 
-        verify(httpClient).getForObject(
-                argThat<String> { endsWith("whois?domain=$expectedDomain") },
-                eq(WhoIs::class.java)
-        )
+        assertThat(mockServer.requestUrl()).matches(".*whois\\?domain=$expectedDomain\$")
     }
 
     @Test
     fun `it should get relevant information`() {
-        val whois = client.whois(expectedDomain)
+        mockServer.addJsonResponse("""{ "company" : "example", "contact": "admin@example.com" }""")
+        val whois = underTest.whois(expectedDomain).block()
 
-        assertThat(whois).isEqualTo(expectedWhois)
+        assertThat(whois).isEqualTo(WhoIs("example", "admin@example.com"))
     }
 }

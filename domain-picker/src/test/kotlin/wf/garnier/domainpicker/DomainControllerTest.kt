@@ -3,22 +3,21 @@ package wf.garnier.domainpicker
 import com.nhaarman.mockito_kotlin.*
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
+import reactor.core.publisher.Flux
+import reactor.core.publisher.Mono
 import wf.garnier.domain.Domain
-import wf.garnier.domain.DomainListResponse
 import wf.garnier.domain.WhoIs
 
 class DomainControllerTest {
-    private val expectedDomainResponse = DomainListResponse(
-            domains = listOf(
+    private val expectedDomains = listOf(
                     Domain("example", "com", true),
                     Domain("example", "io", false),
                     Domain("example", "net", false),
                     Domain("example", "org", true)
             )
-    )
 
     private val domainMock: DomainServiceClient = mock {
-        on { listDomains(any()) } doReturn expectedDomainResponse
+        on { listDomains(any()) } doReturn Flux.fromIterable(expectedDomains)
     }
 
     private val pricingMock: PricingServiceClient = mock {
@@ -26,7 +25,7 @@ class DomainControllerTest {
     }
 
     private val whoisMock: WhoisServiceClient = mock {
-        on { whois(any()) } doReturn WhoIs()
+        on { whois(any()) } doReturn Mono.just(WhoIs())
     }
 
     @Test
@@ -39,9 +38,9 @@ class DomainControllerTest {
 
     @Test
     fun `it calls the pricing service client for available domains`() {
-        val controller = DomainController(domainMock, pricingMock, mock())
+        val controller = DomainController(domainMock, pricingMock, whoisMock)
 
-        controller.getAll("example")
+        controller.getAll("example").blockLast()
         argumentCaptor<String>().apply {
             verify(pricingMock, times(2)).price(capture())
             assertThat(allValues).containsExactlyInAnyOrder("example.com", "example.org")
@@ -52,7 +51,7 @@ class DomainControllerTest {
     fun `it calls the whois service for unavailable domains`() {
         val controller = DomainController(domainMock, pricingMock, whoisMock)
 
-        controller.getAll("example")
+        controller.getAll("example").blockLast()
         argumentCaptor<String>().apply {
             verify(whoisMock, times(2)).whois(capture())
             assertThat(allValues).containsExactlyInAnyOrder("example.io", "example.net")
@@ -61,16 +60,15 @@ class DomainControllerTest {
 
     @Test
     fun `it returns relevant data`() {
-        val controller = DomainController(domainMock, pricingMock, mock())
+        val controller = DomainController(domainMock, pricingMock, whoisMock)
 
-        val domains = controller.getAll("example")
+        val domains = controller.getAll("example").toIterable()
 
-        val expectedDomains = listOf(
+        assertThat(domains).containsExactlyInAnyOrder(
                 AugmentedDomain("example", "com", true, null, 42),
-                AugmentedDomain("example", "io", false, null, 0),
-                AugmentedDomain("example", "net", false, null, 0),
+                AugmentedDomain("example", "io", false, WhoIs(), 0),
+                AugmentedDomain("example", "net", false, WhoIs(), 0),
                 AugmentedDomain("example", "org", true, null, 42)
         )
-        assertThat(domains).isEqualTo(expectedDomains)
     }
 }

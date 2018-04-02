@@ -1,23 +1,29 @@
 package wf.garnier.domainpicker
 
-import com.nhaarman.mockito_kotlin.*
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
-import org.springframework.web.client.RestTemplate
-import wf.garnier.domain.DomainListResponse
+import org.springframework.web.reactive.function.client.WebClient
+import wf.garnier.domain.Domain
+import wf.garnier.domainpicker.mockserver.MockServer
+
 
 class DomainServiceClientTest {
+    private val server = MockServer()
+    private val underTest = DomainServiceClient(WebClient.builder(), server.url())
+
     @Test
     fun `it should call the domain service over http`() {
-        val httpClient: RestTemplate = mock {
-            on { getForObject(any<String>(), eq(DomainListResponse::class.java)) } doReturn DomainListResponse()
-        }
-        val serviceCLient = DomainServiceClient(httpClient)
+        server.addJsonResponse("""{"domains": [{ "name": "example", "extension" : "com", "available": true }]}""")
 
-        serviceCLient.listDomains("anything")
+        val domains = underTest.listDomains("anything").toIterable()
 
-        verify(httpClient, times(1)).getForObject(
-                        eq("http://domain-service/api/domains?search=anything"),
-                        eq(DomainListResponse::class.java)
-                )
+        assertThat(domains).containsExactlyInAnyOrder(Domain("example", "com", true))
+    }
+
+    @Test
+    fun `it should extract domains from the response`() {
+        server.addJsonResponse("")
+        underTest.listDomains("anything").blockLast()
+        assertThat(server.requestUrl()).matches(".*domains\\?search=anything\$")
     }
 }
