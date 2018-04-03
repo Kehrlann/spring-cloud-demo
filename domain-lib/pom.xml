@@ -6,11 +6,10 @@
     <groupId>wf.garnier</groupId>
     <artifactId>domain-lib</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>pom</packaging>
+    <packaging>jar</packaging>
 
     <name>domain-lib</name>
     <description>Common classes for domain projects</description>
-
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
