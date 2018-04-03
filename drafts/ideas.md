@@ -43,3 +43,4 @@ What about config service ... ?
 - Should we TDD it ?
 - Should I load real domain availability for a few well known domains ?
 - How does this work with PCF ?
+- Mmmmmg zipkin ? distributed tracing ?
