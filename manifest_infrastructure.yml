@@ -1,5 +1,0 @@
----
-applications:
-- name: eureka
-  path: eureka/target/eureka-0.0.1-SNAPSHOT.jar
-  memory: 512M
