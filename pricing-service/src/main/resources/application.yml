@@ -1,2 +1,7 @@
 spring.application.name: pricing-service
 server.port: 8081
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/  # magic fallback url for eureka

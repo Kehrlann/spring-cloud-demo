@@ -1,0 +1,11 @@
+spring.application.name: eureka
+server.port: 8761
+
+eureka:
+  instance:
+    hostname: eureka.local.pcfdev.io
+  client:
+    fetchRegistry: false
+    registerWithEureka: false
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
