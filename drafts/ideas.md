@@ -35,6 +35,14 @@ Something around domain names
 Eureka is easy
 What about config service ... ?
 
+# TODO next
+- Deploy all to CF, and test
+- Shutdown pricing on CF, test
+- Do a simple spring JPA integration, with H2 locally and MySQL on CF
+- Prepare simple Kotlin explanation
+- Prepare the demo
+- Run the demo, and time it !
+
 # Questions
 - How do I present labs ?
 - How does the SCS-Eureka-server fare in a multi-instance context ; what if one instance "dies" ?
