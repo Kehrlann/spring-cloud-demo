@@ -1,15 +1,6 @@
 spring.application.name: app
 server.port: 8000
 
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:8761/eureka/ # magic fallback url for eureka
 management:
-  endpoint:
-    health:
-      show-details: always
-  endpoints:
-    web:
-      exposure:
-        include: '*'
+  endpoint.health.show-details: always
+  endpoints.web.exposure.include: '*'
