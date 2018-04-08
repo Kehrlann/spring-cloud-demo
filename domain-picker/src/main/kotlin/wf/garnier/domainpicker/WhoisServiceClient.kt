@@ -6,7 +6,10 @@ import reactor.core.publisher.Mono
 import wf.garnier.domain.WhoIs
 
 @Component
-class WhoisServiceClient(val httpClientBuilder: WebClient.Builder, val url: String = "http://whois-service") {
+class WhoisServiceClient(
+        val httpClientBuilder: WebClient.Builder,
+        val url: String = "http://whois-service"
+) {
 
     fun whois(domain: String): Mono<WhoIs> {
         return httpClientBuilder
