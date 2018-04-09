@@ -30,7 +30,7 @@ class DomainControllerTest {
 
     @Test
     fun `it calls the domain service client`() {
-        val controller = DomainController(domainMock, mock(), mock())
+        val controller = DomainController(domainMock, mock(), mock(), mock())
 
         controller.getAll("example")
         verify(domainMock, times(1)).listDomains("example")
@@ -38,7 +38,7 @@ class DomainControllerTest {
 
     @Test
     fun `it calls the pricing service client for available domains`() {
-        val controller = DomainController(domainMock, pricingMock, whoisMock)
+        val controller = DomainController(domainMock, pricingMock, whoisMock, mock())
 
         controller.getAll("example").blockLast()
         argumentCaptor<String>().apply {
@@ -49,7 +49,7 @@ class DomainControllerTest {
 
     @Test
     fun `it calls the whois service for unavailable domains`() {
-        val controller = DomainController(domainMock, pricingMock, whoisMock)
+        val controller = DomainController(domainMock, pricingMock, whoisMock, mock())
 
         controller.getAll("example").blockLast()
         argumentCaptor<String>().apply {
@@ -60,7 +60,7 @@ class DomainControllerTest {
 
     @Test
     fun `it returns relevant data`() {
-        val controller = DomainController(domainMock, pricingMock, whoisMock)
+        val controller = DomainController(domainMock, pricingMock, whoisMock, mock())
 
         val domains = controller.getAll("example").toIterable()
 

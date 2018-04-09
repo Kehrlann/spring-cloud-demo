@@ -37,10 +37,10 @@ What about config service ... ?
 
 # TODO next
 [x] Deploy all to CF
-[ ] Correct routes for services using eureka
-    - Maybe check pivotalservices/spring cloud connectors
-[ ] Shutdown pricing on CF, test
+[x] Correct routes for services using eureka
+[x] Shutdown pricing on CF, test
 [ ] Do a simple spring JPA integration, with H2 locally and MySQL on CF
+  - How do I mysql ?!
 [ ] Prepare simple Kotlin explanation
 [ ] Prepare the demo
 [ ] Run the demo, and time it !

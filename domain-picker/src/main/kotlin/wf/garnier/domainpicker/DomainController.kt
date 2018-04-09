@@ -1,8 +1,6 @@
 package wf.garnier.domainpicker
 
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.RequestParam
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 
@@ -10,8 +8,14 @@ import reactor.core.publisher.Mono
 class DomainController(
         val domainClient: DomainServiceClient,
         val pricingClient: PricingServiceClient,
-        val whoisClient: WhoisServiceClient
+        val whoisClient: WhoisServiceClient,
+        val repo: ReservationRepository
 ) {
+    @GetMapping("/api/reservation")
+    fun getReservations() = repo.findAll()
+
+    @PostMapping("/api/reservation")
+    fun addReservation(@RequestBody reservation: Reservation) = repo.save(reservation)
 
     @GetMapping("/api/domains")
     fun getAll(@RequestParam("search") search: String): Flux<AugmentedDomain> =
