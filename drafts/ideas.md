@@ -41,8 +41,8 @@ What about config service ... ?
 [x] Shutdown pricing on CF, test
 [ ] Do a simple spring JPA integration, with H2 locally and MySQL on CF
   - How do I mysql ?!
-[ ] Prepare simple Kotlin explanation
-[ ] Prepare the demo
+[x] Prepare simple Kotlin explanation
+[~] Prepare the demo
 [ ] Run the demo, and time it !
 
 # Questions
