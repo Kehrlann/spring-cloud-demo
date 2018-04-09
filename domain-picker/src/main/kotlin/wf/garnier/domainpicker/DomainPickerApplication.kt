@@ -12,9 +12,6 @@ import org.springframework.web.client.RestTemplate
 import org.springframework.web.reactive.function.client.WebClient
 
 @SpringBootApplication
-@EnableEurekaClient
-@EnableCircuitBreaker
-@EnableFeignClients
 class DomainPickerApplication(val restTemplateBuilder: RestTemplateBuilder) {
 
     @Bean
@@ -24,9 +21,6 @@ class DomainPickerApplication(val restTemplateBuilder: RestTemplateBuilder) {
     @Bean
     @LoadBalanced
     fun webClientBuilder(): WebClient.Builder = WebClient.builder()
-
-    @Bean
-    fun webClient(builder: WebClient.Builder): WebClient = builder.build()
 }
 
 fun main(args: Array<String>) {
