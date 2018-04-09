@@ -32,4 +32,5 @@ class DomainController(
                             false -> whoisClient.whois(it.fullName()).map { augDom.copy(whois = it) }
                         }
                     }
+                    .sort { one, two -> one.extension.compareTo(two.extension) }
 }

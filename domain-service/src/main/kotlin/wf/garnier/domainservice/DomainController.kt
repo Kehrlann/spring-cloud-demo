@@ -11,6 +11,14 @@ class DomainController(val config: DomainServiceConfiguration) {
 
     // TODO : make some unavailable
     @GetMapping("/api/domains")
-    fun getDomains(@RequestParam("search") searchTerm: String) =
-            DomainListResponse(domains = config.extensions.map { Domain(searchTerm, it, true) })
+    fun getDomains(@RequestParam("search") searchTerm: String): DomainListResponse {
+        val domains = config.extensions
+                .map { Domain(searchTerm, it, true) }
+                .map {
+                    val available = it.extension.toList().intersect(it.name.toList()).isEmpty()
+                    it.copy(available = available)
+                }
+
+        return DomainListResponse(domains = domains)
+    }
 }
