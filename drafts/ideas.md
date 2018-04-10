@@ -39,8 +39,11 @@ What about config service ... ?
 [x] Deploy all to CF
 [x] Correct routes for services using eureka
 [x] Shutdown pricing on CF, test
-[ ] Do a simple spring JPA integration, with H2 locally and MySQL on CF
+[~] Do a simple spring JPA integration, with H2 locally and MySQL on CF
   - How do I mysql ?!
+  - Apparently, Eureka conflicts with the autoconfigurator provided by cloud foundry
+  - It adds two javax.sql.Datasource beans, which is too much for the SpringAutoReconfiguration added by the buildpack
+  - Consequence : only do a simple service with a sql integration
 [x] Prepare simple Kotlin explanation
 [~] Prepare the demo
 [ ] Run the demo, and time it !

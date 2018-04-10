@@ -7,4 +7,3 @@ applications:
     spring.profiles.active: cloud
   services:
     - eureka
-    - domain-mysql
