@@ -50,6 +50,7 @@ What about config service ... ?
 [ ] Spring Sleuth
 [ ] Primer on Reactor / nio
 [ ] Fix Eureka so that the circuit breaker is nice ...
+[ ] Learn how to configure MySQL dialect for PCF Dev
 
 # Questions
 - How do I present labs ?
