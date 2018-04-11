@@ -47,6 +47,9 @@ What about config service ... ?
 [x] Prepare simple Kotlin explanation
 [~] Prepare the demo
 [ ] Run the demo, and time it !
+[ ] Spring Sleuth
+[ ] Primer on Reactor / nio
+[ ] Fix Eureka so that the circuit breaker is nice ...
 
 # Questions
 - How do I present labs ?
