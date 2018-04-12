@@ -49,7 +49,8 @@ What about config service ... ?
 [ ] Run the demo, and time it !
 [ ] Spring Sleuth
 [ ] Primer on Reactor / nio
-[ ] Fix Eureka so that the circuit breaker is nice ...
+[x] Circuit breaker never opens ?!
+  - Just gotta go fast ... while(true); do curl ... done;
 [ ] Learn how to configure MySQL dialect for PCF Dev
 
 # Questions
