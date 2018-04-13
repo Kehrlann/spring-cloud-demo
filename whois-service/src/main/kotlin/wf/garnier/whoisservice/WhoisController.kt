@@ -12,6 +12,8 @@ import java.util.*
 @RestController
 class WhoisController {
 
+    private val DELAY_FACTOR = 1
+
     @GetMapping("/api/whois")
     fun whois(@RequestParam("domain") domain: String): Mono<WhoIs> =
         Mono
@@ -20,5 +22,5 @@ class WhoisController {
 
     fun company(domain: String) = domain.split(".").asReversed()[1] + ", corp."
 
-    private fun randomDuration() = 1000 + Random().nextInt(1000).toLong()
+    private fun randomDuration(): Long = (DELAY_FACTOR * (1000 + Random().nextInt(1000))).toLong()
 }
