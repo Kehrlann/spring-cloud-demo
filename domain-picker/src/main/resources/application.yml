@@ -4,6 +4,5 @@ server.port: 8000
 management:
   endpoint.health.show-details: always
   endpoints.web.exposure.include: '*'
-eureka:
-  client:
-    registry-fetch-interval-seconds: 5
+
+spring.sleuth.sampler.probability: 1

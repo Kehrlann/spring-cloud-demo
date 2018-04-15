@@ -23,16 +23,14 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <kotlin.version>1.2.31</kotlin.version>
-        <spring-cloud.version>2.0.0.M8</spring-cloud.version>
-        <openfeign.version>2.0.0.M2</openfeign.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-netflix</artifactId>
-                <version>${spring-cloud.version}</version>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>Finchley.M9</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -76,8 +74,15 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-sleuth</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-zipkin</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
-            <version>${openfeign.version}</version>
         </dependency>
 
         <!-- Kotlin-specific -->
