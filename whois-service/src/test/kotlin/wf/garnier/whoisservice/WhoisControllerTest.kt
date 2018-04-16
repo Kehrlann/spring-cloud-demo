@@ -9,20 +9,20 @@ class WhoisControllerTest {
 
     @Test
     fun `it returns whois information`() {
-        val controller = WhoisController()
+        val controller = WhoisController(0.1F)
 
         val processingTime = measureTimeMillis {
             controller.whois("example.com").block()
         }
 
         // TODO: use virtual time ?
-        assertThat(processingTime).isGreaterThan(1000)
-        assertThat(processingTime).isLessThan(2000 + 250)  // max delay time + a safe margin for processing time
+        assertThat(processingTime).isGreaterThan(100)
+        assertThat(processingTime).isLessThan(200 + 250)  // max delay time + a safe margin for processing time
     }
 
     @Test
     fun `returns the admin for the domain, and an expiration date within 2 years`() {
-        val controller = WhoisController()
+        val controller = WhoisController(0.1F)
 
         val (company, contact, validUntil) = controller.whois("example.com").block()!!
 

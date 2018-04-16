@@ -1,5 +1,6 @@
 package wf.garnier.whoisservice
 
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
@@ -10,9 +11,7 @@ import java.time.LocalDate
 import java.util.*
 
 @RestController
-class WhoisController {
-
-    private val DELAY_FACTOR = 1
+class WhoisController(@Value("\${whois.delay.factor:1.0}") val delayFactor: Float) {
 
     @GetMapping("/api/whois")
     fun whois(@RequestParam("domain") domain: String): Mono<WhoIs> =
@@ -22,5 +21,5 @@ class WhoisController {
 
     fun company(domain: String) = domain.split(".").asReversed()[1] + ", corp."
 
-    private fun randomDuration(): Long = (DELAY_FACTOR * (1000 + Random().nextInt(1000))).toLong()
+    private fun randomDuration(): Long = (delayFactor * (1000 + Random().nextInt(1000))).toLong()
 }
