@@ -8,3 +8,5 @@ eureka:
     metadata-map:
       management.port: 80
   client.service-url.defaultZone: ${vcap.services.eureka.credentials.url}
+
+spring.zipkin.base-url: ${vcap.services.zipkin.credentials.url}
