@@ -39,26 +39,25 @@ What about config service ... ?
 [x] Deploy all to CF
 [x] Correct routes for services using eureka
 [x] Shutdown pricing on CF, test
-[~] Do a simple spring JPA integration, with H2 locally and MySQL on CF
+[x] Do a simple spring JPA integration, with H2 locally and MySQL on CF
   - How do I mysql ?!
   - Apparently, Eureka conflicts with the autoconfigurator provided by cloud foundry
   - It adds two javax.sql.Datasource beans, which is too much for the SpringAutoReconfiguration added by the buildpack
   - Consequence : only do a simple service with a sql integration
 [x] Prepare simple Kotlin explanation
-[~] Prepare the demo
-[ ] Run the demo, and time it !
-[ ] Spring Sleuth
-[ ] Primer on Reactor / nio
+[x] Prepare the demo
+[~] Run the demo, and time it !
+[x] Make whois-service delay configurable 
+[x] Spring Sleuth
+[x] Primer on Reactor / nio
 [x] Circuit breaker never opens ?!
   - Just gotta go fast ... while(true); do curl ... done;
-[ ] Learn how to configure MySQL dialect for PCF Dev
 
 # Questions
 - How do I present labs ?
 - How does the SCS-Eureka-server fare in a multi-instance context ; what if one instance "dies" ?
 
 # What else could we do ?!
-- Should we TDD it ?
-- Should I load real domain availability for a few well known domains ?
 - How does this work with PCF ?
+- App autoscaling ?
 - Mmmmmg zipkin ? distributed tracing ?
