@@ -1,0 +1,28 @@
+---
+applications:
+- name: bcn-pricing-service
+  path: ../../pricing-service/target/pricing-service-0.0.1-SNAPSHOT.jar
+  env:
+    spring.profiles.active: cloud
+  memory: 1G
+  services:
+  - eureka
+  - zipkin
+
+- name: bcn-whois-service
+  path: ../../whois-service/target/whois-service-0.0.1-SNAPSHOT.jar
+  env:
+    spring.profiles.active: cloud
+  memory: 1G
+  services:
+  - eureka
+  - zipkin
+
+- name: bcn-domain-service
+  path: ../../domain-service/target/domain-service-0.0.1-SNAPSHOT.jar
+  env:
+    spring.profiles.active: cloud
+  memory: 1G
+  services:
+  - eureka
+  - zipkin
