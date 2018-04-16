@@ -3,7 +3,6 @@ package wf.garnier.domainpicker
 import com.nhaarman.mockito_kotlin.*
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
-import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 import wf.garnier.domain.Domain
 import wf.garnier.domain.WhoIs
@@ -17,7 +16,7 @@ class DomainControllerTest {
             )
 
     private val domainMock: DomainServiceClient = mock {
-        on { listDomains(any()) } doReturn Flux.fromIterable(expectedDomains)
+        on { listDomains(any()) } doReturn expectedDomains
     }
 
     private val pricingMock: PricingServiceClient = mock {

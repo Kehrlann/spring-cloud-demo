@@ -14,7 +14,7 @@ class DomainController(
 ) {
     @GetMapping("/api/domains")
     fun getAll(@RequestParam("search") search: String): Flux<AugmentedDomain> =
-            domainClient.listDomains(search)
+            Flux.fromIterable(domainClient.listDomains(search))
                     .map { AugmentedDomain(it) }
                     .map {
                         val price = if (!it.available) 0 else pricingClient.price(it.fullName())

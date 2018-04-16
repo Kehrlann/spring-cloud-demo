@@ -7,13 +7,12 @@ import wf.garnier.domain.WhoIs
 
 @Component
 class WhoisServiceClient(
-        val httpClientBuilder: WebClient.Builder,
+        val httpClient: WebClient,
         val url: String = "http://whois-service"
 ) {
 
     fun whois(domain: String): Mono<WhoIs> {
-        return httpClientBuilder
-                .build()
+        return httpClient
                 .get()
                 .uri("$url/api/whois?domain=$domain")
                 .retrieve()

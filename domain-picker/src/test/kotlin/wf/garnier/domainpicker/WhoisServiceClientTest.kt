@@ -10,7 +10,7 @@ class WhoisServiceClientTest {
     private val expectedDomain = "example.com"
     private val mockServer = MockServer()
 
-    private val underTest = WhoisServiceClient(WebClient.builder(), mockServer.url())
+    private val underTest = WhoisServiceClient(WebClient.create(), mockServer.url())
 
     @Test
     fun `it should call the whois service`() {
