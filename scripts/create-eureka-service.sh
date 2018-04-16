@@ -1,3 +1,3 @@
 #!/bin/bash
 
-cf cups eureka -p '{"url": "http://eureka-test-service.cfapps.io/eureka/"}'
+cf cups eureka -p '{"url": "http://bcn-eureka.cfapps.io/eureka/"}'

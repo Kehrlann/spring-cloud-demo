@@ -7,3 +7,4 @@ applications:
     spring.profiles.active: cloud
   services:
     - eureka
+    - zipkin

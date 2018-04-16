@@ -1,5 +1,9 @@
 ---
 applications:
-- name: eureka
+- name: bcn-eureka
   path: ../eureka/target/eureka-0.0.1-SNAPSHOT.jar
+  memory: 512M
+
+- name: bcn-zipkin
+  path: ../zipkin/target/zipkin-0.0.1-SNAPSHOT.jar
   memory: 512M
