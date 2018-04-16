@@ -12,14 +12,21 @@
     <description>Parent project for a boot two demo</description>
 
     <modules>
-        <module>domain-lib</module>
+        <!-- Infrastructure stuff -->
         <module>eureka</module>
         <module>hystrix</module>
+        <module>zipkin</module>
 
-        <module>reservation</module>
+        <!-- Shared domain lib -->
+        <module>domain-lib</module>
+
+        <!-- Backing services -->
         <module>domain-picker</module>
         <module>domain-service</module>
         <module>pricing-service</module>
         <module>whois-service</module>
+
+        <!-- Main app -->
+        <module>reservation</module>
     </modules>
 </project>
