@@ -1,4 +1,0 @@
-server.port: 8000
-
-spring.jpa.hibernate.ddl-auto: update
-management.security.enabled: false

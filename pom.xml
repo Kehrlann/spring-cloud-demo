@@ -21,12 +21,11 @@
         <module>domain-lib</module>
 
         <!-- Backing services -->
-        <module>domain-picker</module>
         <module>domain-service</module>
         <module>pricing-service</module>
         <module>whois-service</module>
 
         <!-- Main app -->
-        <module>reservation</module>
+        <module>domain-picker</module>
     </modules>
 </project>
